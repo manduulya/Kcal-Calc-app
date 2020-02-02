@@ -1,0 +1,29 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+body{
+    background: #afafaf;
+    text-align: center;
+}
+#user-input-form{
+    width: 90%;
+    /* background-color: #fff; */
+    margin: 20px auto;
+    /* padding: 100px 0 0 0; */
+}
+input, button, textarea{
+    width: 100%;
+    padding: 20px;
+    margin-bottom: 20px;
+    font-size: 16px;
+}
+#user-list{
+    height: 400px;
+    margin-top: 10px;
+}
+.hide{
+    display: none;
+}

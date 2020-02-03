@@ -4,11 +4,11 @@ const apiURL = 'https://cors-anywhere.herokuapp.com/https://api.edamam.com/api/f
 const apiKey = 'ac0e75934fa1cfb2f8753a18b9962b46';
 const apiID = '6fb1f813';
 
-const STORE = [
-    {
-
-    }
-]
+let STORE = {
+    ingredient: null,
+    quantity: null,
+    energy: null
+}
 
 function formatQueryParams(params){
     const queryItems = Object.keys(params)
@@ -31,7 +31,6 @@ function displayResult(responseJson, quantity){
             </div>`
         )
     }
-    // $('.main-function').addClass('hide');
     $('#result-screen').removeClass('hide');
     console.log('working');
 }
@@ -58,20 +57,16 @@ function getItem(query, quantity){
         })
         console.log(url);
 }
-
-// function addItemToArray(){
-//     STORE.push(`${userList}`)
-// };
-
 function watchForm(){
     $('form').submit(event =>{
         event.preventDefault();
         const userList = $('#user-list').val();
+        STORE.ingredient = userList;
         const quantity = $('#quantity').val();
+        STORE.quantity = quantity;
         $('#user-list').val('');
         getItem(userList, quantity);
-        // addItemToArray(userList, quantity);
+        console.log(STORE);
     });
 }
-// console.log(STORE);
 $(watchForm);

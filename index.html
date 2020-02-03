@@ -18,9 +18,13 @@
         <form id="user-input-form">
             <label for="user-list">Your Ingredient list:</label>
             <br>
-            <textarea type="text" id="user-list" placeholder="For example: 1 cup orange juice 3 tablespoons olive oil" required></textarea>
+            <div class="input-section">
+                <input type="text" id="user-list" placeholder="For example: orange juice" required></input>
+                <input type="text" id="quantity" placeholder="For example: 3" value="1" required></input>
+            </div>
             <br>
-            <button type="submit">Let's calculate!</button>
+            <button type="submit">Add to my list!</button>
+            <button type="submit">Calculate my total!</button>
         </form>
     </section>
     

@@ -10,9 +10,7 @@ body{
 }
 #user-input-form{
     width: 90%;
-    /* background-color: #fff; */
     margin: 20px auto;
-    /* padding: 100px 0 0 0; */
 }
 input, button, textarea{
     width: 100%;
@@ -20,9 +18,15 @@ input, button, textarea{
     margin-bottom: 20px;
     font-size: 16px;
 }
-#user-list{
-    height: 400px;
+.input-section{
+    display: flex;
     margin-top: 10px;
+}
+#quantity{
+    width: 25%;
+}
+#user-list{
+    width: 75%;
 }
 .hide{
     display: none;

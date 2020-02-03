@@ -4,13 +4,19 @@ const apiURL = 'https://cors-anywhere.herokuapp.com/https://api.edamam.com/api/f
 const apiKey = 'ac0e75934fa1cfb2f8753a18b9962b46';
 const apiID = '6fb1f813';
 
+const STORE = [
+    {
+
+    }
+]
+
 function formatQueryParams(params){
     const queryItems = Object.keys(params)
     .map(key => `${encodeURIComponent(key)}=${encodeURIComponent(params[key])}`)
     return queryItems.join('&');
 }
 
-function displayResult(responseJson){
+function displayResult(responseJson, quantity){
 
     $('#result-screen').empty();
 
@@ -19,17 +25,18 @@ function displayResult(responseJson){
             `<div>
                 <ul class="result-list">
                     <li><p class="result-header">${responseJson.parsed[i].food.label}</p></li>
-                    <li><h3>Energy: </h3><p>${responseJson.parsed[i].food.nutrients.ENERC_KCAL} kcal</p></li>
+                    <li><p>${quantity}</p></li>
+                    <li><p>${responseJson.parsed[i].food.nutrients.ENERC_KCAL * quantity} kcal</p></li>
                 </ul>
             </div>`
         )
     }
-    $('.main-function').addClass('hide');
+    // $('.main-function').addClass('hide');
     $('#result-screen').removeClass('hide');
     console.log('working');
 }
 
-function calcTotalKcal(query){
+function getItem(query, quantity){
     const params = {
         app_id: apiID,
         app_key: apiKey,
@@ -45,19 +52,26 @@ function calcTotalKcal(query){
             }
             throw new Error(response.statusText);
         })
-        .then(responseJson => displayResult(responseJson))
+        .then(responseJson => displayResult(responseJson, quantity))
         .catch(err => {
             $('#js-error-message').text(`Something went wrong ${err.message}`);
         })
         console.log(url);
 }
 
+// function addItemToArray(){
+//     STORE.push(`${userList}`)
+// };
+
 function watchForm(){
     $('form').submit(event =>{
         event.preventDefault();
         const userList = $('#user-list').val();
-        calcTotalKcal(userList);
+        const quantity = $('#quantity').val();
+        $('#user-list').val('');
+        getItem(userList, quantity);
+        // addItemToArray(userList, quantity);
     });
 }
-
+// console.log(STORE);
 $(watchForm);

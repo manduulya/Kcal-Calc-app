@@ -10,7 +10,24 @@ function formatQueryParams(params){
     return queryItems.join('&');
 }
 
+function displayResult(responseJson){
 
+    $('#result-screen').empty();
+
+    for(let i = 0; i<responseJson.parsed.length; i++){
+        $('#result-screen').append(
+            `<div>
+                <ul class="result-list">
+                    <li><p class="result-header">${responseJson.parsed[i].food.label}</p></li>
+                    <li><h3>Energy: </h3><p>${responseJson.parsed[i].food.nutrients.ENERC_KCAL} kcal</p></li>
+                </ul>
+            </div>`
+        )
+    }
+    $('.main-function').addClass('hide');
+    $('#result-screen').removeClass('hide');
+    console.log('working');
+}
 
 function calcTotalKcal(query){
     const params = {
@@ -28,7 +45,7 @@ function calcTotalKcal(query){
             }
             throw new Error(response.statusText);
         })
-        .then(responseJson => calcResult(responseJson))
+        .then(responseJson => displayResult(responseJson))
         .catch(err => {
             $('#js-error-message').text(`Something went wrong ${err.message}`);
         })

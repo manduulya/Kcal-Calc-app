@@ -15,11 +15,10 @@ function watchForm(){
         const quantity = $('#quantity').val();
         // STORE.quantity = quantity;
         // const energy1 = responseJson.parsed[i].food.nutrients.ENERC_KCAL * quantity;
-        STORE.push({ingredient: userList, quantity: quantity});
+        // STORE.push({ingredient: userList, quantity: quantity});
         // STORE.energy = energy1;
         $('#user-list').val('');
         getItem(userList, quantity);
-        console.log(STORE);
     });
 }
 
@@ -39,11 +38,12 @@ function getItem(query, quantity, energy1){
             }
             throw new Error(response.statusText);
         })
-        .then(responseJson => displayResult(responseJson, quantity, energy1))
+        .then(responseJson => displayResult( query, responseJson, quantity))
         .catch(err => {
             $('#js-error-message').text(`Something went wrong ${err.message}`);
         })
         console.log(url);
+        
 }
 
 // function addItemToStore(ingredient, quantity, energy){
@@ -58,37 +58,53 @@ function formatQueryParams(params){
     return queryItems.join('&');
 }
 
-function displayResult(responseJson, quantity){
+function displayResult(userList, responseJson, quantity){
 
-    for(let i = 0; i<responseJson.parsed.length; i++){
-
-        const energy1 = responseJson.parsed[i].food.nutrients.ENERC_KCAL * quantity;
-        STORE.push({energy: energy1});
+    for(let i = 0; i<responseJson.parsed.length; i++){        
+        const energy1 = responseJson.parsed[0].food.nutrients.ENERC_KCAL * quantity;
+        // STORE.push({energy: energy1});
+        STORE.push({ingredient: userList, quantity: quantity, energy: energy1});
         $('#result-screen').append(
             `<div>
                 <ul class="result-list">
-                    <li><p class="result-header">${responseJson.parsed[i].food.label}</p></li>
+                    <li><p class="result-header">${responseJson.parsed[0].food.label}</p></li>
                     <li><p>${quantity}</p></li>
-                    <li><p>${responseJson.parsed[i].food.nutrients.ENERC_KCAL * quantity} kcal</p></li>
+                    <li><p>${responseJson.parsed[0].food.nutrients.ENERC_KCAL * quantity} kcal</p></li>
                 </ul>
             </div>`
         )
     }
-    $('#result-screen').removeClass('hide');
+
     console.log('working');
+    console.log(STORE);
+}
+$('#user-input-form').on('click', '.show-list', function(){
+    $('.main-function').addClass('hide');
+    $('#result-screen').removeClass('hide');
+    console.log("clicked");
+})
+    
+
+function calculateResults(){
+    $('#result-screen').on('click', '.calculate-button', function (){
+        let totalCalorie = 0;
+
+        STORE.forEach(function(STORE) {
+        totalCalorie += STORE.energy;
+    });
+        $('#result-screen').addClass('hide');
+        $('#calc-screen').removeClass('hide');
+        $('#calc-screen').append(
+            `<div>
+                <h1>Your calorie consumption is:</h1>
+                <h2>${totalCalorie}</h2>
+            </div>`
+        );
+        console.log(totalCalorie);
+    })
 }
 
 
-function calculateResults(){
-    $('.calculate-button').click(event => {
-        var val = STORE.reduce(function(previousValue, currentValue) {
-            return {
-              energy: previousValue.energy + currentValue.energy,
-            }
-          });
-          console.log(val);
-        })
-    }
 
-$(calculateResults)
+$(calculateResults);
 $(watchForm);

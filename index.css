@@ -2,19 +2,78 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: sans-serif;
+    font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+}
+html{
+    background: url("src/background.png") no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 }
 body{
-    background: #afafaf;
+    /* background: #afafaf; */
     text-align: center;
+    color: #fff;
 }
-#user-input-form{
+#welcome-screen, .main-function, #calc-screen{
+    margin: 10% auto;
+    width: 90%;
+    height: 90vh;
+    border-radius: 15px;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+#result-screen{
+    margin: 10% auto;
+    width: 90%;
+    height: 90vh;
+    border-radius: 15px;
+    background-color: rgba(255, 255, 255, 0.8);
+    padding-top: 20%;
+    color: #000000;
+}
+#welcome-screen div, #calc-screen div{
+    line-height: 3em;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -moz-transform: translateX(-50%) translateY(-50%);
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
+}
+#welcome-screen div img{
+    width: 60%;
+}
+#welcome-screen div p{
+    font-family: 'Pacifico', cursive;;
+    /* color: #fff; */
+    text-shadow: 0px 0px 1px #fff, 0 0 2em #fff;
+    font-size: 1.5em;
+
+}
+.welcome-button{
+    width: 144px;
+    height: 40px;
+}
+.welcome-button, #user-input-form button ,.result-screen-div button, .refresh-page-button{
+    cursor: pointer;
+    border-radius: 15px 15px 6px 6px;
+    border-style: none;
+    background: rgba(245,212,103,1);
+    background: -moz-linear-gradient(top, rgba(245,212,103,1) 0%, rgba(245,212,103,1) 28%, rgba(250,154,0,1) 59%, rgba(250,154,0,1) 93%, rgba(209,125,0,1) 94%, rgba(209,125,0,1) 100%);
+    background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(245,212,103,1)), color-stop(28%, rgba(245,212,103,1)), color-stop(59%, rgba(250,154,0,1)), color-stop(93%, rgba(250,154,0,1)), color-stop(94%, rgba(209,125,0,1)), color-stop(100%, rgba(209,125,0,1)));
+    background: -webkit-linear-gradient(top, rgba(245,212,103,1) 0%, rgba(245,212,103,1) 28%, rgba(250,154,0,1) 59%, rgba(250,154,0,1) 93%, rgba(209,125,0,1) 94%, rgba(209,125,0,1) 100%);
+    background: -o-linear-gradient(top, rgba(245,212,103,1) 0%, rgba(245,212,103,1) 28%, rgba(250,154,0,1) 59%, rgba(250,154,0,1) 93%, rgba(209,125,0,1) 94%, rgba(209,125,0,1) 100%);
+    background: -ms-linear-gradient(top, rgba(245,212,103,1) 0%, rgba(245,212,103,1) 28%, rgba(250,154,0,1) 59%, rgba(250,154,0,1) 93%, rgba(209,125,0,1) 94%, rgba(209,125,0,1) 100%);
+    background: linear-gradient(to bottom, rgba(245,212,103,1) 0%, rgba(245,212,103,1) 28%, rgba(250,154,0,1) 59%, rgba(250,154,0,1) 93%, rgba(209,125,0,1) 94%, rgba(209,125,0,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f5d467', endColorstr='#d17d00', GradientType=0 );
+}
+#user-input-form, #result-screen div{
     width: 90%;
     margin: 20px auto;
 }
 input, button, textarea{
     width: 100%;
-    padding: 20px;
     margin-bottom: 20px;
     font-size: 16px;
 }
@@ -23,11 +82,38 @@ input, button, textarea{
     margin-top: 10px;
 }
 #quantity{
-    width: 25%;
+    width: 20%;
 }
 #user-list{
-    width: 75%;
+    width: 80%;
 }
 .hide{
     display: none;
+}
+#user-input-form{
+    padding-top: 20%;
+}
+#user-input-form label, #result-screen h2{ 
+    font-size: 1.25em;
+    font-weight: 600;
+}
+.input-section input{
+    border-radius: 15px;
+    padding: 8px;
+    border-style: none;
+    background-color: rgba(255, 255, 255, 0.22);
+    color: #fff;
+}
+.input-section input::placeholder{
+    color: #fff;
+}
+#user-input-form button, .result-screen-div button, .refresh-page-button{
+    padding: 15px;
+}
+.result-list li{
+    list-style-type: none;
+}
+.result-list{
+    display: flex;
+    justify-content: space-between;
 }

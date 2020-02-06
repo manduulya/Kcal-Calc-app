@@ -7,6 +7,11 @@ const apiID = '6fb1f813';
 let STORE = [
 ]
 
+$('#welcome-screen').on('click', '.welcome-button', function(){
+    $('#welcome-screen').addClass('hide');
+    $('.main-function').removeClass('hide');
+})
+
 function watchForm(){
     $('#user-input-form').submit(event =>{
         event.preventDefault();
@@ -64,7 +69,7 @@ function displayResult(userList, responseJson, quantity){
         const energy1 = responseJson.parsed[0].food.nutrients.ENERC_KCAL * quantity;
         // STORE.push({energy: energy1});
         STORE.push({ingredient: userList, quantity: quantity, energy: energy1});
-        $('#result-screen').append(
+        $('.result-screen-divdiv').append(
             `<div>
                 <ul class="result-list">
                     <li><p class="result-header">${responseJson.parsed[0].food.label}</p></li>
@@ -96,8 +101,9 @@ function calculateResults(){
         $('#calc-screen').removeClass('hide');
         $('#calc-screen').append(
             `<div>
-                <h1>Your calorie consumption is:</h1>
-                <h2>${totalCalorie}</h2>
+                <h2>Your total calorie consumption is:</h2>
+                <h1>${totalCalorie}</h1>
+                <button class='refresh-page-button' onClick="window.location.reload();">Refresh Page</button>
             </div>`
         );
         console.log(totalCalorie);

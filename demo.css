@@ -3,32 +3,22 @@
     margin: 0;
     box-sizing: border-box;
 }
-html{
-
-    background: url("src/background.png") no-repeat center center fixed; 
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-    
-}
-/* body{
-    background-image: url("src/background.png");
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
+/* div{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -moz-transform: translateX(-50%) translateY(-50%);
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
 } */
-button{
-    border-radius: 15px 15px 0 0;
-border-style: none;
-width: 144px;
-height: 42px;
-background: rgba(245,212,103,1);
-background: -moz-linear-gradient(top, rgba(245,212,103,1) 0%, rgba(245,212,103,1) 28%, rgba(250,154,0,1) 59%, rgba(250,154,0,1) 93%, rgba(209,125,0,1) 94%, rgba(209,125,0,1) 100%);
-background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(245,212,103,1)), color-stop(28%, rgba(245,212,103,1)), color-stop(59%, rgba(250,154,0,1)), color-stop(93%, rgba(250,154,0,1)), color-stop(94%, rgba(209,125,0,1)), color-stop(100%, rgba(209,125,0,1)));
-background: -webkit-linear-gradient(top, rgba(245,212,103,1) 0%, rgba(245,212,103,1) 28%, rgba(250,154,0,1) 59%, rgba(250,154,0,1) 93%, rgba(209,125,0,1) 94%, rgba(209,125,0,1) 100%);
-background: -o-linear-gradient(top, rgba(245,212,103,1) 0%, rgba(245,212,103,1) 28%, rgba(250,154,0,1) 59%, rgba(250,154,0,1) 93%, rgba(209,125,0,1) 94%, rgba(209,125,0,1) 100%);
-background: -ms-linear-gradient(top, rgba(245,212,103,1) 0%, rgba(245,212,103,1) 28%, rgba(250,154,0,1) 59%, rgba(250,154,0,1) 93%, rgba(209,125,0,1) 94%, rgba(209,125,0,1) 100%);
-background: linear-gradient(to bottom, rgba(245,212,103,1) 0%, rgba(245,212,103,1) 28%, rgba(250,154,0,1) 59%, rgba(250,154,0,1) 93%, rgba(209,125,0,1) 94%, rgba(209,125,0,1) 100%);
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f5d467', endColorstr='#d17d00', GradientType=0 );
+.briefcase{
+    width: 80px;
 }
+.notepad{
+    margin: 0 auto 80px;
+    width: 45px;
+}
+/* div{
+    display: flex;
+    flex-direction: column;
+} */

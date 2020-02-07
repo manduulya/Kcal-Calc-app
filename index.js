@@ -1,32 +1,27 @@
-// 'use strict';
-
 const apiURL = 'https://cors-anywhere.herokuapp.com/https://api.edamam.com/api/food-database/parser';
 const apiKey = 'ac0e75934fa1cfb2f8753a18b9962b46';
 const apiID = '6fb1f813';
-// let energy1 = '';
 let STORE = [
 ]
 
+//welcome screen displaying 
 $('#welcome-screen').on('click', '.welcome-button', function(){
     $('#welcome-screen').addClass('hide');
     $('.main-function').removeClass('hide');
 })
 
+//watching form submit with user's input
 function watchForm(){
     $('#user-input-form').submit(event =>{
         event.preventDefault();
         const userList = $('#user-list').val();
-        // STORE.ingredient = userList;
         const quantity = $('#quantity').val();
-        // STORE.quantity = quantity;
-        // const energy1 = responseJson.parsed[i].food.nutrients.ENERC_KCAL * quantity;
-        // STORE.push({ingredient: userList, quantity: quantity});
-        // STORE.energy = energy1;
         $('#user-list').val('');
         getItem(userList, quantity);
     });
 }
 
+//get request 
 function getItem(query, quantity, energy1){
     const params = {
         app_id: apiID,
@@ -51,23 +46,17 @@ function getItem(query, quantity, energy1){
         
 }
 
-// function addItemToStore(ingredient, quantity, energy){
-//     STORE.push({
-//         ingredient: userList, quantity:quantity, energy: energy
-//     })
-// }
-
 function formatQueryParams(params){
     const queryItems = Object.keys(params)
     .map(key => `${encodeURIComponent(key)}=${encodeURIComponent(params[key])}`)
     return queryItems.join('&');
 }
 
+//displaying results to DOM
 function displayResult(userList, responseJson, quantity){
 
     for(let i = 0; i<responseJson.parsed.length; i++){        
         const energy1 = responseJson.parsed[0].food.nutrients.ENERC_KCAL * quantity;
-        // STORE.push({energy: energy1});
         STORE.push({ingredient: userList, quantity: quantity, energy: energy1});
         $('.result-screen-divdiv').append(
             `<div>
@@ -89,7 +78,7 @@ $('#user-input-form').on('click', '.show-list', function(){
     console.log("clicked");
 })
     
-
+//calculation of result 
 function calculateResults(){
     $('#result-screen').on('click', '.calculate-button', function (){
         let totalCalorie = 0;
@@ -109,7 +98,6 @@ function calculateResults(){
         console.log(totalCalorie);
     })
 }
-
 
 
 $(calculateResults);

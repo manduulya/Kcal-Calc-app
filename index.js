@@ -19,6 +19,7 @@ function watchForm(){
         $('#user-list').val('');
         getItem(userList, quantity);
     });
+
 }
 
 //get request 
@@ -41,9 +42,7 @@ function getItem(query, quantity, energy1){
         .then(responseJson => displayResult( query, responseJson, quantity))
         .catch(err => {
             $('#js-error-message').text(`Something went wrong ${err.message}`);
-        })
-        console.log(url);
-        
+        })        
 }
 
 function formatQueryParams(params){
@@ -53,29 +52,28 @@ function formatQueryParams(params){
 }
 
 //displaying results to DOM
-function displayResult(userList, responseJson, quantity){
+function displayResult(userList, responseJson, quantity, measure){
 
-    for(let i = 0; i<responseJson.parsed.length; i++){        
-        const energy1 = responseJson.parsed[0].food.nutrients.ENERC_KCAL * quantity;
+    // for(let i = 0; i<responseJson.hints.length; i++){        
+        const energy1 = responseJson.hints[0].food.nutrients.ENERC_KCAL * quantity;
+        
         STORE.push({ingredient: userList, quantity: quantity, energy: energy1});
         $('.result-screen-divdiv').append(
             `<div>
                 <ul class="result-list">
-                    <li><p class="result-header">${responseJson.parsed[0].food.label}</p></li>
+                    <li><p class="result-header">${responseJson.hints[0].food.label}</p></li>
                     <li><p>${quantity}</p></li>
-                    <li><p>${responseJson.parsed[0].food.nutrients.ENERC_KCAL * quantity} kcal</p></li>
+                    
+                    <li><p>${responseJson.hints[0].food.nutrients.ENERC_KCAL * quantity} kcal</p></li>
                 </ul>
             </div>`
         )
-    }
-
-    console.log('working');
-    console.log(STORE);
 }
-$('#user-input-form').on('click', '.show-list', function(){
-    $('.main-function').addClass('hide');
+//function to display measurement type 
+
+
+$('#user-input-form').on('click', '.add-to-list', function(){
     $('#result-screen').removeClass('hide');
-    console.log("clicked");
 })
     
 //calculation of result 
@@ -86,6 +84,7 @@ function calculateResults(){
         STORE.forEach(function(STORE) {
         totalCalorie += STORE.energy;
     });
+        $('.main-function').addClass('hide');
         $('#result-screen').addClass('hide');
         $('#calc-screen').removeClass('hide');
         $('#calc-screen').append(
@@ -95,7 +94,6 @@ function calculateResults(){
                 <button class='refresh-page-button' onClick="window.location.reload();">Refresh Page</button>
             </div>`
         );
-        console.log(totalCalorie);
     })
 }
 

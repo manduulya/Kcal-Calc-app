@@ -23,12 +23,12 @@ body{
     background-color: rgba(255, 255, 255, 0.1);
 }
 #result-screen{
-    margin: 10% auto;
+    margin: 0 auto;
     width: 90%;
-    height: 90vh;
     border-radius: 15px;
     background-color: rgba(255, 255, 255, 0.8);
-    padding-top: 20%;
+    padding-top: 1em;
+    padding-bottom: 1em;
     color: #000000;
 }
 #welcome-screen div, #calc-screen div{
@@ -71,19 +71,24 @@ body{
     margin: 20px auto;
 }
 input, button{
-    width: 100%;
-    margin-bottom: 20px;
+    width: 80%;
     font-size: 16px;
 }
 .input-section{
     display: flex;
     margin-top: 10px;
+    align-items: center;
 }
 #quantity{
     width: 20%;
+    margin-left: 5px;
+}
+label{
+    margin-right: 10px;
+    font-size: 16px;
 }
 #user-list{
-    width: 80%;
+    width: 60%;
 }
 .hide{
     display: none;
@@ -91,7 +96,7 @@ input, button{
 #user-input-form{
     padding-top: 20%;
 }
-#user-input-form label, #result-screen h2{ 
+#user-input-form, #result-screen h2{ 
     font-size: 1.25em;
     font-weight: 600;
 }
@@ -106,7 +111,7 @@ input, button{
     color: #fff;
 }
 #user-input-form button, .result-screen-div button, .refresh-page-button{
-    padding: 15px;
+    padding: 10px;
 }
 .result-list li{
     list-style-type: none;

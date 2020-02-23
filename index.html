@@ -11,13 +11,13 @@
 <body>
     <section id="welcome-screen">
         <div>
-            <img src="src/logo.png" alt="">
-            <p>Let's calc Kcal</p>
+            <img src="src/logo.png" alt="Calc Kcal Logo" role="landingPageLogo">
+            <h1 role="header">Let's calc Kcal</h1>
             <button class="welcome-button" type="submit">Start</button>
         </div>
     </section>
-    <section class="main-function hide">
-        <form id="user-input-form">
+    <section class="main-function hide" role="main">
+        <form id="user-input-form" role="form">
             <label for="user-list">Your Ingredient list:</label>
             <br>
             <div class="input-section">
@@ -27,7 +27,7 @@
                 <input type="number" id="quantity" placeholder="For example: 3" value="1" required>
             </div>
             <br>
-            <button type="submit" class="add-to-list">Add to list</button>
+            <button type="submit" role="submit" class="add-to-list">Add to list</button>
         </form>
         <section id="result-screen" class="hide">
             <h2>Your ingredients list:</h2>
@@ -44,7 +44,7 @@
 
     <section id="calc-screen" class="hide"></section>
 
-    <section id="js-error-message"></section>
+    <section id="js-error-message" class="hide"></section>
 
     <script
   src="https://code.jquery.com/jquery-3.4.1.js"

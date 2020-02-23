@@ -22,7 +22,7 @@ body{
     border-radius: 15px;
     background-color: rgba(255, 255, 255, 0.1);
 }
-#result-screen{
+#result-screen, #js-error-message{
     margin: 0 auto;
     width: 90%;
     border-radius: 15px;
@@ -31,7 +31,7 @@ body{
     padding-bottom: 1em;
     color: #000000;
 }
-#welcome-screen div, #calc-screen div{
+#welcome-screen div, #calc-screen div, #js-error-message{
     line-height: 3em;
     position: absolute;
     top: 50%;
@@ -43,7 +43,7 @@ body{
 #welcome-screen div img{
     width: 60%;
 }
-#welcome-screen div p{
+#welcome-screen div h1{
     font-family: 'Pacifico', cursive;;
     text-shadow: 0px 0px 1px #fff, 0 0 2em #fff;
     font-size: 1.5em;
@@ -108,7 +108,7 @@ label{
     color: #fff;
 }
 .input-section input::placeholder{
-    color: #fff;
+    color: rgba(255, 255, 255, 0.5);
 }
 #user-input-form button, .result-screen-div button, .refresh-page-button{
     padding: 10px;

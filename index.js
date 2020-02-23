@@ -41,7 +41,9 @@ function getItem(query, quantity, energy1){
         })
         .then(responseJson => displayResult( query, responseJson, quantity))
         .catch(err => {
-            $('#js-error-message').text(`Something went wrong ${err.message}`);
+            $('#result-screen').addClass('hide');
+            $('#js-error-message').removeClass('hide');
+            $('#js-error-message').text(`We couldn't find any results for that. Try something else.`);
         })        
 }
 
@@ -74,6 +76,7 @@ function displayResult(userList, responseJson, quantity, measure){
 
 $('#user-input-form').on('click', '.add-to-list', function(){
     $('#result-screen').removeClass('hide');
+    $('#js-error-message').addClass('hide');
 })
     
 //calculation of result 

@@ -12,6 +12,7 @@ html{
     background-size: cover;
 }
 body{
+    /* background: black; */
     text-align: center;
     color: #fff;
 }
@@ -32,7 +33,7 @@ body{
     color: #000000;
 }
 #welcome-screen div, #calc-screen div, #js-error-message{
-    line-height: 3em;
+    line-height: 2em;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -41,15 +42,17 @@ body{
     transform: translateX(-50%) translateY(-50%);
 }
 #welcome-screen div img{
-    width: 60%;
+    width: 100%;
 }
 #welcome-screen div h1{
-    font-family: 'Pacifico', cursive;;
-    text-shadow: 0px 0px 1px #fff, 0 0 2em #fff;
-    font-size: 1.5em;
+    font-family: 'Georgia', serif;
+    font-style: italic;
+    font-weight: normal;
+    font-size: 1em;
 
 }
 .welcome-button{
+    margin-top: 20px;
     width: 144px;
     height: 40px;
 }
@@ -66,7 +69,7 @@ body{
     background: linear-gradient(to bottom, rgba(245,212,103,1) 0%, rgba(245,212,103,1) 28%, rgba(250,154,0,1) 59%, rgba(250,154,0,1) 93%, rgba(209,125,0,1) 94%, rgba(209,125,0,1) 100%);
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f5d467', endColorstr='#d17d00', GradientType=0 );
 }
-#user-input-form, #result-screen div{
+#user-input-form, .result-screen-div{
     width: 90%;
     margin: 20px auto;
 }
@@ -94,7 +97,7 @@ label{
     display: none;
 }
 #user-input-form{
-    padding-top: 20%;
+    padding-top: 10%;
 }
 #user-input-form, #result-screen h2{ 
     font-size: 1.25em;
@@ -120,16 +123,21 @@ label{
     display: flex;
     justify-content: space-between;
 }
+.result-header{
+    margin-bottom: 1em;
+}
 @media only screen and (min-width: 568px){
+    #welcome-screen div img{
+        width: 50%;
+    }
     #welcome-screen, .main-function, #calc-screen{
         margin: 2% auto;
     }
     #result-screen{
         margin: 2% auto;
-        padding-top: 10%;
     }
     #user-input-form{
-        padding-top: 10%;
+        padding-top: 5%;
     }
     input, button{
         width: 45%;

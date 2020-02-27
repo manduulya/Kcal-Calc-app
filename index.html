@@ -12,13 +12,14 @@
     <section id="welcome-screen">
         <div>
             <img src="src/logo.png" alt="Calc Kcal Logo" role="landingPageLogo">
-            <h1 role="header">Let's calc Kcal</h1>
+            <h1 role="header">Create a list of foods of  your choice and see the total number of calories</h1>
             <button class="welcome-button" type="submit">Start</button>
         </div>
     </section>
     <section class="main-function hide" role="main">
         <form id="user-input-form" role="form">
-            <label for="user-list">Your Ingredient list:</label>
+            <h2 class="result-header">Total calories: <span class="js-total-calories">0</span></h2>
+            <h3 for="user-list">Your Ingredient list:</h3>
             <br>
             <div class="input-section">
                 <label for="user-list">Name:</label>
@@ -35,7 +36,7 @@
                 <div class="result-screen-divdiv">
     
                 </div>
-                <button type="submit" class="calculate-button">Calculate my total!</button>
+                <button type="button" class="reset-button">Reset list!</button>
             </div>
         </section>
     </section>

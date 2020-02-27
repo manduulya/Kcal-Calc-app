@@ -4,102 +4,107 @@ const apiID = '6fb1f813';
 let STORE = [
 ]
 
-//welcome screen displaying 
-$('#welcome-screen').on('click', '.welcome-button', function(){
-    $('#welcome-screen').addClass('hide');
-    $('.main-function').removeClass('hide');
+//welcome screen switching to main page
+$('#welcome-screen').on('click', '.welcome-button', function () {
+    //click on start button to display mainfunction page and hide welcome screen
+  $('#welcome-screen').addClass('hide');
+  $('.main-function').removeClass('hide');
 })
 
 //watching form submit with user's input
-function watchForm(){
-    $('#user-input-form').submit(event =>{
-        event.preventDefault();
-        const userList = $('#user-list').val();
-        const quantity = $('#quantity').val();
-        $('#user-list').val('');
-        getItem(userList, quantity);
-    });
-
+function watchForm() {
+  $('#user-input-form').submit(event => {
+      //preventing to submit a form
+    event.preventDefault();
+    //declaring variable from user ingredient input
+    const userList = $('#user-list').val();
+    //declaring variable from user quantity input
+    const quantity = $('#quantity').val();
+    $('#user-list').val('');
+    getItem(userList, quantity);
+  });
 }
 
 //get request 
-function getItem(query, quantity, energy1){
-    const params = {
-        app_id: apiID,
-        app_key: apiKey,
-        ingr: query
-    };
-    const queryString = formatQueryParams(params)
-    const url = apiURL + '?' + queryString;
+function getItem(query, quantity, energy1) {
+  const params = {
+    app_id: apiID,
+    app_key: apiKey,
+    ingr: query
+  };
+  const queryString = formatQueryParams(params)
+  const url = apiURL + '?' + queryString;
 
-    fetch(url)
-        .then(response => {
-            if(response.ok){
-                return response.json();
-            }
-            throw new Error(response.statusText);
-        })
-        .then(responseJson => displayResult( query, responseJson, quantity))
-        .catch(err => {
-            $('#result-screen').addClass('hide');
-            $('#js-error-message').removeClass('hide');
-            $('#js-error-message').text(`We couldn't find any results for that. Try something else.`);
-        })        
+  //get request
+  fetch(url)
+    .then(response => {
+      if (response.ok) {
+        return response.json();
+      }
+      throw new Error(response.statusText);
+    })
+    //display response from API 
+    .then(responseJson => displayResult(query, responseJson, quantity))
+    //if error occurs, hide result screen and display error message
+    .catch(err => {
+      $('#result-screen').addClass('hide');
+      $('#js-error-message').removeClass('hide');
+      $('#js-error-message').text(`We couldn't find any results for that. Try something else.`);
+    })
 }
-
-function formatQueryParams(params){
-    const queryItems = Object.keys(params)
+//encoding a URI by replacing each instance of certain characters
+function formatQueryParams(params) {
+  const queryItems = Object.keys(params)
     .map(key => `${encodeURIComponent(key)}=${encodeURIComponent(params[key])}`)
-    return queryItems.join('&');
+  return queryItems.join('&');
 }
 
 //displaying results to DOM
-function displayResult(userList, responseJson, quantity, measure){
+function displayResult(userList, responseJson, quantity, measure) {
 
-    // for(let i = 0; i<responseJson.hints.length; i++){        
-        const energy1 = responseJson.hints[0].food.nutrients.ENERC_KCAL * quantity;
-        
-        STORE.push({ingredient: userList, quantity: quantity, energy: energy1});
-        $('.result-screen-divdiv').append(
-            `<div>
-                <ul class="result-list">
-                    <li><p class="result-header">${responseJson.hints[0].food.label}</p></li>
-                    <li><p>${quantity}</p></li>
-                    
-                    <li><p>${responseJson.hints[0].food.nutrients.ENERC_KCAL * quantity} kcal</p></li>
-                </ul>
-            </div>`
-        )
+    //declaring variable of each lists calorie
+  const energy1 = responseJson.hints[0].food.nutrients.ENERC_KCAL * quantity;
+    //declaring varaible of total calories 
+  let totalCalorie = 0;
+    //adding items to STORE array
+  STORE.push({ ingredient: userList, quantity: quantity, energy: energy1 });
+    //manipulating DOM
+  $('.result-screen-divdiv').append(
+    `<div>
+        <ul class="result-list">
+            <li><p class="result-header">${responseJson.hints[0].food.label}</p></li>
+            <li><p>${quantity}</p></li>
+            <li><p>${responseJson.hints[0].food.nutrients.ENERC_KCAL * quantity} kcal</p></li>
+        </ul>
+    </div>`
+  )
+    //for each loop through the energy calorie of each lists
+  STORE.forEach(function (STORE) {
+    totalCalorie += STORE.energy;
+  });
+  $('.js-total-calories').text(`${totalCalorie}`);
 }
-//function to display measurement type 
-
-
-$('#user-input-form').on('click', '.add-to-list', function(){
-    $('#result-screen').removeClass('hide');
-    $('#js-error-message').addClass('hide');
+//adding item to the list
+$('#user-input-form').on('click', '.add-to-list', function () {
+    //displaying result screen
+  $('#result-screen').removeClass('hide');
+    //hiding error message if it was displayed
+  $('#js-error-message').addClass('hide');
 })
-    
-//calculation of result 
-function calculateResults(){
-    $('#result-screen').on('click', '.calculate-button', function (){
-        let totalCalorie = 0;
 
-        STORE.forEach(function(STORE) {
-        totalCalorie += STORE.energy;
-    });
-        $('.main-function').addClass('hide');
-        $('#result-screen').addClass('hide');
-        $('#calc-screen').removeClass('hide');
-        $('#calc-screen').append(
-            `<div>
-                <h2>Your total calorie consumption is:</h2>
-                <h1>${totalCalorie}</h1>
-                <button class='refresh-page-button' onClick="window.location.reload();">Refresh Page</button>
-            </div>`
-        );
-    })
-}
+//Reset the listing 
+function resetList() {
+  $('#result-screen').on('click', '.reset-button', function () {
+      //resetting total number of calorie in the DOM
+    $('.js-total-calories').text(0);
+        //removing elements from DOM
+    $('.result-screen-divdiv').empty();
+        //refreshing STORE array
+    STORE = [];
+    //hiding result screen
+    $('#result-screen').addClass('hide');
+  });
+};
 
-
-$(calculateResults);
+$(resetList);
 $(watchForm);

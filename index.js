@@ -22,6 +22,8 @@ function watchForm() {
     const quantity = $('#quantity').val();
     $('#user-list').val('');
     getItem(userList, quantity);
+    //displaying progress bar
+    $('.progress-bar').removeClass('hide');
   });
 }
 
@@ -47,6 +49,7 @@ function getItem(query, quantity, energy1) {
     .then(responseJson => displayResult(query, responseJson, quantity))
     //if error occurs, hide result screen and display error message
     .catch(err => {
+        //if error hide result screen and display error message
       $('#result-screen').addClass('hide');
       $('#js-error-message').removeClass('hide');
       $('#js-error-message').text(`We couldn't find any results for that. Try something else.`);
@@ -60,8 +63,9 @@ function formatQueryParams(params) {
 }
 
 //displaying results to DOM
-function displayResult(userList, responseJson, quantity, measure) {
-
+function displayResult(userList, responseJson, quantity) {
+    //hiding progress bar
+    $('.progress-bar').addClass('hide');
     //declaring variable of each lists calorie
   const energy1 = responseJson.hints[0].food.nutrients.ENERC_KCAL * quantity;
     //declaring varaible of total calories 
@@ -70,13 +74,11 @@ function displayResult(userList, responseJson, quantity, measure) {
   STORE.push({ ingredient: userList, quantity: quantity, energy: energy1 });
     //manipulating DOM
   $('.result-screen-divdiv').append(
-    `<div>
-        <ul class="result-list">
-            <li><p class="result-header">${responseJson.hints[0].food.label}</p></li>
-            <li><p>${quantity}</p></li>
-            <li><p>${responseJson.hints[0].food.nutrients.ENERC_KCAL * quantity} kcal</p></li>
-        </ul>
-    </div>`
+    `<tr class="result-list">
+        <td><p>${responseJson.hints[0].food.label}</p></li>
+        <td><p>${quantity}</p></li>
+        <td><p>${responseJson.hints[0].food.nutrients.ENERC_KCAL * quantity} kcal</p></li>
+    </tr>`
   )
     //for each loop through the energy calorie of each lists
   STORE.forEach(function (STORE) {

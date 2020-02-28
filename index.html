@@ -12,7 +12,7 @@
     <section id="welcome-screen">
         <div>
             <img src="src/logo.png" alt="Calc Kcal Logo" role="landingPageLogo">
-            <h1 role="header">Create a list of foods of  your choice and see the total number of calories</h1>
+            <h1 role="description">Create a list of foods of  your choice to see the total number of calories</h1>
             <button class="welcome-button" type="submit">Start</button>
         </div>
     </section>
@@ -28,24 +28,26 @@
                 <input type="number" id="quantity" placeholder="For example: 3" value="1" required>
             </div>
             <br>
-            <button type="submit" role="submit" class="add-to-list">Add to list</button>
+            <button type="submit" class="add-to-list">Add to list</button>
         </form>
         <section id="result-screen" class="hide">
-            <h2>Your ingredients list:</h2>
+            <h2 role="result-header">Your ingredients list:</h2>
+            <div class="progress-bar hide">
+                <img src="src/progress.png" alt="progress-bar">
+            </div>
+
             <div class="result-screen-div">
-                <div class="result-screen-divdiv">
+                <table class="result-screen-divdiv">
     
-                </div>
+                </table>
                 <button type="button" class="reset-button">Reset list!</button>
             </div>
         </section>
+        
+        <section id="js-error-message" class="hide">
+
+        </section>
     </section>
-    
-
-
-    <section id="calc-screen" class="hide"></section>
-
-    <section id="js-error-message" class="hide"></section>
 
     <script
   src="https://code.jquery.com/jquery-3.4.1.js"

@@ -12,7 +12,6 @@ html{
     background-size: cover;
 }
 body{
-    /* background: black; */
     text-align: center;
     color: #fff;
 }
@@ -21,18 +20,21 @@ body{
     width: 90%;
     height: 90vh;
     border-radius: 15px;
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: rgba(255, 255, 255, 0.05);
 }
 #result-screen, #js-error-message{
     margin: 0 auto;
     width: 90%;
     border-radius: 15px;
-    background-color: rgba(255, 255, 255, 0.8);
+    background-color: rgba(255, 255, 255, 0.9);
     padding-top: 1em;
     padding-bottom: 1em;
     color: #000000;
 }
-#welcome-screen div, #calc-screen div, #js-error-message{
+#js-error-message{
+    width: 80%;
+}
+#welcome-screen div, #calc-screen div{
     line-height: 2em;
     position: absolute;
     top: 50%;
@@ -49,7 +51,6 @@ body{
     font-style: italic;
     font-weight: normal;
     font-size: 1em;
-
 }
 .welcome-button{
     margin-top: 20px;
@@ -70,11 +71,13 @@ body{
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f5d467', endColorstr='#d17d00', GradientType=0 );
 }
 #user-input-form, .result-screen-div{
-    width: 90%;
     margin: 20px auto;
 }
+#user-input-form{
+    width: 90%;
+}
 input, button{
-    width: 80%;
+    width: 60%;
     font-size: 16px;
 }
 .input-section{
@@ -92,9 +95,6 @@ label{
 }
 #user-list{
     width: 60%;
-}
-.hide{
-    display: none;
 }
 #user-input-form{
     padding-top: 10%;
@@ -117,15 +117,46 @@ label{
     padding: 10px;
 }
 .result-list li{
+    line-height: 2em;
     list-style-type: none;
 }
-.result-list{
+.result-screen-divdiv{
+    width: 100%;
+}
+.result-screen-divdiv td{
+    padding-bottom: 6px;
+}
+/* .result-list{
     display: flex;
     justify-content: space-between;
-}
+} */
 .result-header{
     margin-bottom: 1em;
 }
+
+.progress-bar{
+    width: 78%;
+    display: flex;
+    justify-content: flex-end;
+    position: absolute;
+    margin-top: -20px;
+}
+.progress-bar img{
+    width: 30px;
+    animation: spin 2s linear infinite;
+}
+.hide{
+    display: none;
+}
+@keyframes spin{
+    0%{
+        transform: rotateZ(0);
+    }
+    100%{
+        transform: rotateZ(360deg);
+    }
+}
+
 @media only screen and (min-width: 568px){
     #welcome-screen div img{
         width: 50%;

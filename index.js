@@ -4,7 +4,7 @@ const apiID = '6fb1f813';
 let STORE = [
 ]
 
-//welcome screen switching to main page
+//watching start button to start the app
 $('#welcome-screen').on('click', '.welcome-button', function () {
     //click on start button to display mainfunction page and hide welcome screen
   $('#welcome-screen').addClass('hide');
@@ -52,7 +52,7 @@ function getItem(query, quantity, energy1) {
         //if error hide result screen and display error message
       $('#result-screen').addClass('hide');
       $('#js-error-message').removeClass('hide');
-      $('#js-error-message').text(`We couldn't find any results for that. Try something else.`);
+      $('#js-error-message').text(`We couldn't find any results for that. Type another ingredient to remove this box`);
     })
 }
 //encoding a URI by replacing each instance of certain characters
@@ -108,5 +108,9 @@ function resetList() {
   });
 };
 
-$(resetList);
-$(watchForm);
+function initAPP(){
+  $(resetList);
+  $(watchForm);
+}
+
+$(initAPP);
